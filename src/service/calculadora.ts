@@ -1,4 +1,5 @@
 export function somar(num1: number, num2: number) {
+    console.log("entrou na pasta service")
     return num1+num2;
 }
 
