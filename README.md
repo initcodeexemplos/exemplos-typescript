@@ -1,5 +1,19 @@
-# Exemplos utilizados para o curso da Udemy
+# Iniciando projeto de TypeScript
 
-Este repositório contém exemplos de programação do curso da udemy voltados para o aprendizado de TypeScript.
+Configurando o projeto inicialmente
 
-O repositório está separado em Branchs para facilitar o entendimento e acompanhar a evolução dos códigos apresentados em aula.
+```bash
+npm init
+```
+
+Baixou as dependencias de desenvolvimento
+
+```bash
+npm install typescript ts-node-dev @types/node --save-dev
+```
+
+Configurar nosso projeto TS
+
+```bash
+npx tsc --init
+```

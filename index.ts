@@ -1,3 +1,4 @@
-import somar from "./exercicios/exercicio1";
+console.log("Hello world batata");
 
-console.log(somar(1,2));
+
+const batata: string = "batata2";
