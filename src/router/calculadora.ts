@@ -1,11 +1,13 @@
 import express from 'express'
-import { apiDiv, apiMult, apiSomar, apiSub } from '../api/calculadora';
+import ApiCalculadora from '../api/calculadora';
 
 const router = express.Router();
 
-router.post('/somar', apiSomar);
-router.post('/sub', apiSub);
-router.post('/mult', apiMult);
-router.post('/div', apiDiv);
+const apiCalculadora = new ApiCalculadora()
+
+router.post('/somar', apiCalculadora.apiSomar);
+router.post('/sub', apiCalculadora.apiSub);
+router.post('/mult', apiCalculadora.apiMult);
+router.post('/div', apiCalculadora.apiDiv);
 
 export default router;
