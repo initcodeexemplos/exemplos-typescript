@@ -30,3 +30,11 @@ npx tsc --init
 
 ponto inicial - Index.ts -> routes -> controller/api -> service
                 Index.ts <- routes <- controller/api <- service
+
+
+# JEST
+
+```bash
+npm install --save-dev jest ts-jest @types/jest
+npx ts-jest config:init
+```
