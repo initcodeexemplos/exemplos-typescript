@@ -17,3 +17,16 @@ Configurar nosso projeto TS
 ```bash
 npx tsc --init
 ```
+
+---
+
+├── controllers -> Try Catch, status e send;
+├── router -> Métodos Get, Post, Put e Delete;
+├── services -> Método em sí e validações (throw);
+├── tests -> Testes;
+└── index.ts ou app.ts -> Inicialização do sistema.
+
+---
+
+ponto inicial - Index.ts -> routes -> controller/api -> service
+                Index.ts <- routes <- controller/api <- service
