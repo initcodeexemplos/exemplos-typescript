@@ -1,4 +1,4 @@
-import Calculadora from '../src/service/calculadora'
+import Calculadora from '../src/service/pessoa'
 
 describe("Calculadora", () => {
     let calculadora: Calculadora
