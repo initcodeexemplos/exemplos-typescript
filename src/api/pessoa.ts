@@ -5,10 +5,10 @@ const servicePessoa = new ServicePessoa()
 
 export default class ApiPessoa {
 
-    public FindByIndex(req: Request, res: Response): void {
+    public async FindById(req: Request, res: Response): Promise<void> {
         try {
-            const index = Number(req.params.index) 
-            const pessoa = servicePessoa.FindByIndex(index)
+            const id = Number(req.params.id) 
+            const pessoa = await servicePessoa.FindById(id)
 
             res.status(200).json({ pessoa });
         } catch (error) {
@@ -20,9 +20,9 @@ export default class ApiPessoa {
         }
     }
     
-    public FindAll(req: Request, res: Response): void {
+    public async FindAll(req: Request, res: Response): Promise<void> {
         try {
-            const pessoas = servicePessoa.FindAll()
+            const pessoas = await servicePessoa.FindAll()
 
             res.status(200).json({ pessoas });
         } catch (error) {
@@ -34,10 +34,10 @@ export default class ApiPessoa {
         }
     }
 
-    public Create(req: Request, res: Response): void {
+    public async Create(req: Request, res: Response): Promise<void> {
         try {
             const nome = req.body?.nome
-            servicePessoa.Create(nome)
+            await servicePessoa.Create(nome)
 
             res.status(201).json({ msg: "Pessoa cadastrada com sucesso!" });
         } catch (error) {
@@ -49,11 +49,11 @@ export default class ApiPessoa {
         }
     }
 
-    public Update(req: Request, res: Response): void {
+    public async Update(req: Request, res: Response): Promise<void> {
         try {
-            const index = Number(req.params.index) 
+            const id = Number(req.params.id) 
             const nome = req.body?.nome
-            servicePessoa.Update(index, nome)
+            await servicePessoa.Update(id, nome)
 
             res.status(200).json({ msg: "Pessoa alterada com sucesso!" });
         } catch (error) {
@@ -65,10 +65,10 @@ export default class ApiPessoa {
         }
     }
 
-    public Delete(req: Request, res: Response): void {
+    public async Delete(req: Request, res: Response): Promise<void> {
         try {
-            const index = Number(req.params.index)
-            servicePessoa.Delete(index)
+            const id = Number(req.params.id)
+            await servicePessoa.Delete(id)
 
             res.status(204).json({ msg: "Pessoa deletada com sucesso!" });
         } catch (error) {

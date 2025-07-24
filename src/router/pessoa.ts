@@ -6,9 +6,9 @@ const router = express.Router();
 const apiPessoa = new ApiPessoa()
 
 router.get('/pessoas', apiPessoa.FindAll);
-router.get('/pessoa/:index', apiPessoa.FindByIndex);
+router.get('/pessoa/:id', apiPessoa.FindById);
 router.post('/pessoa', apiPessoa.Create);
-router.put('/pessoa/:index', apiPessoa.Update);
-router.delete('/pessoa/:index', apiPessoa.Delete);
+router.put('/pessoa/:id', apiPessoa.Update);
+router.delete('/pessoa/:id', apiPessoa.Delete);
 
 export default router;

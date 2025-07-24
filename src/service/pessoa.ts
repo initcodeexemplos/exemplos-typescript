@@ -1,25 +1,36 @@
 import Pessoa from '../model/pessoa'
 
-const modelPessoa = new Pessoa();
-
 export default class ServicePessoa {
-    FindByIndex(index: number): string {
-        return modelPessoa.FindByIndex(index)
+    async FindById(id: number): Promise<Pessoa | null> {
+        return Pessoa.findOne({ where: { id } })
     }
 
-    FindAll(): Array<string> {
-        return modelPessoa.FindAll();
+    async FindAll(): Promise<Array<Pessoa>> {
+        return Pessoa.findAll();
     }
 
-    Create(nome: string): void {
-        modelPessoa.Create(nome)
+    async Create(nome: string): Promise<Pessoa> {
+        return Pessoa.create({ nome, idade: 15 })
     }
 
-    Update(index: number, nome: string): void {
-        modelPessoa.Update(index, nome)
+    async Update(id: number, nome: string): Promise<Pessoa> {
+        const pessoaAntiga = await this.FindById(id)
+
+        if(!pessoaAntiga) {
+            throw new Error("Pessoa não encontrada");
+        }
+        pessoaAntiga.nome = nome
+
+        return pessoaAntiga.save()
     }
 
-    Delete(index: number): void {
-        modelPessoa.Delete(index)
+    async Delete(id: number): Promise<void> {
+        const pessoaAntiga = await this.FindById(id)
+
+        if(!pessoaAntiga) {
+            throw new Error("Pessoa não encontrada")
+        }
+
+        pessoaAntiga.destroy()
     }
 }

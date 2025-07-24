@@ -1,23 +1,19 @@
-const banco = new Array("João", "Ana", "Pedro", "Maria")
+import { Column, DataType, Model, Table } from "sequelize-typescript";
 
-export default class Pessoa {
-    FindByIndex(index: number): string {
-        return banco[index]
-    }
-
-    FindAll(): Array<string> {
-        return banco;
-    }
-
-    Create(nome: string): void {
-        banco.push(nome)
-    }
-
-    Update(index: number, nome: string): void {
-        banco[index] = nome;
-    }
-
-    Delete(index: number): void {
-        banco.splice(index, 1)
-    }
+@Table({
+    tableName: "pessoas",
+    timestamps: true
+})
+export default class Pessoa extends Model {
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
+    nome!: string;
+    
+    @Column({
+        type: DataType.INTEGER,
+        allowNull: false,
+    })
+    idade!: number;
 }
