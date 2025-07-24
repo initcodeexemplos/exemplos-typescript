@@ -37,7 +37,8 @@ export default class ApiPessoa {
     public async Create(req: Request, res: Response): Promise<void> {
         try {
             const nome = req.body?.nome
-            await servicePessoa.Create(nome)
+            const idade = Number(req.body?.idade)
+            await servicePessoa.Create(nome, idade)
 
             res.status(201).json({ msg: "Pessoa cadastrada com sucesso!" });
         } catch (error) {
@@ -53,7 +54,8 @@ export default class ApiPessoa {
         try {
             const id = Number(req.params.id) 
             const nome = req.body?.nome
-            await servicePessoa.Update(id, nome)
+            const idade = Number(req.body?.idade)
+            await servicePessoa.Update(id, nome, idade)
 
             res.status(200).json({ msg: "Pessoa alterada com sucesso!" });
         } catch (error) {

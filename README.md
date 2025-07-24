@@ -43,6 +43,6 @@ npx ts-jest config:init
 # Sequelize
 
 ```bash
-npm install sequelize sequelize-typescript mysql2 dotnet
+npm install sequelize sequelize-typescript mysql2 dotenv
 npm install --save-dev @types/sequelize
 ```

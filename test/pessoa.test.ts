@@ -20,16 +20,18 @@ describe("Realizar CRUD de Pessoa", () => {
     })
 
     it("Criar uma Pessoa", async () => {
-        const pessoa = await service.Create("João", transaction)
+        const pessoa = await service.Create("João", 40, transaction)
         id = pessoa.id
 
         expect(pessoa.nome).toBe("João")
+        expect(pessoa.idade).toBe(40)
     })
 
     it("Alterar uma Pessoa", async () => {
-        const pessoa = await service.Update(id, "Ana", transaction)
+        const pessoa = await service.Update(id, "Ana", 30, transaction)
 
         expect(pessoa.nome).toBe("Ana")
+        expect(pessoa.idade).toBe(30)
     })
 
     it("Listar uma Pessoa", async () => {

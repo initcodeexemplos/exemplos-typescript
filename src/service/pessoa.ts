@@ -10,17 +10,18 @@ export default class ServicePessoa {
         return Pessoa.findAll({ transaction });
     }
 
-    async Create(nome: string, transaction?: Transaction): Promise<Pessoa> {
-        return Pessoa.create({ nome, idade: 15 }, { transaction })
+    async Create(nome: string, idade: number, transaction?: Transaction): Promise<Pessoa> {
+        return Pessoa.create({ nome, idade }, { transaction })
     }
 
-    async Update(id: number, nome: string, transaction?: Transaction): Promise<Pessoa> {
+    async Update(id: number, nome: string, idade: number, transaction?: Transaction): Promise<Pessoa> {
         const pessoaAntiga = await this.FindById(id, transaction)
 
         if(!pessoaAntiga) {
             throw new Error("Pessoa não encontrada");
         }
         pessoaAntiga.nome = nome
+        pessoaAntiga.idade = idade
 
         return pessoaAntiga.save({ transaction })
     }

@@ -1,18 +1,19 @@
 import { Sequelize } from "sequelize-typescript";
 import Pessoa from "./model/pessoa";
+require('dotenv').config()
 
 class Database {
     public db: Sequelize
 
     constructor() {
         this.db = new Sequelize({
-            database: "exemplo",
-            host: "localhost",
-            username: "root",
-            password: '',
+            database: process.env.DB_DATABASE ?? "exemplo",
+            host: process.env.DB_HOST ?? "localhost",
+            username: process.env.DB_USERNAME ?? "root",
+            password: process.env.DB_PASSWORD ?? '',
+            port: Number(process.env.DB_PORT) ?? 3306,
             dialect: 'mysql',
-            models: [ Pessoa ],
-            port: 3306
+            models: [ Pessoa ]
         })
     }
 
