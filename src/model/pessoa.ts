@@ -1,4 +1,5 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+import { AllowNull, BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import Usuario from "./usuario";
 
 @Table({
     tableName: "pessoas",
@@ -16,4 +17,14 @@ export default class Pessoa extends Model {
         allowNull: false,
     })
     idade!: number;
+
+    @ForeignKey(() => Usuario)
+    @Column({
+        type: DataType.INTEGER,
+        allowNull: true 
+    })
+    usuarioId?: number
+
+    @BelongsTo(() => Usuario)
+    usuario?: Usuario
 }

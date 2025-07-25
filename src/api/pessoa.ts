@@ -38,7 +38,8 @@ export default class ApiPessoa {
         try {
             const nome = req.body?.nome
             const idade = Number(req.body?.idade)
-            await servicePessoa.Create(nome, idade)
+            const usuarioId = Number(req.body?.usuarioId)
+            await servicePessoa.Create(nome, idade, usuarioId)
 
             res.status(201).json({ msg: "Pessoa cadastrada com sucesso!" });
         } catch (error) {

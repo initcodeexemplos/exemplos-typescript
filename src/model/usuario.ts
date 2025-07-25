@@ -1,4 +1,5 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+import { Column, DataType, HasOne, Model, Table } from "sequelize-typescript";
+import Pessoa from "./pessoa";
 
 @Table({
     tableName: "usuarios",
@@ -17,4 +18,7 @@ export default class Usuario extends Model {
         allowNull: false,
     })
     senha!: string;
+
+    @HasOne(() => Pessoa)
+    pessoa?: Pessoa
 }
