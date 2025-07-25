@@ -80,4 +80,19 @@ export default class ApiUsuario {
         }
     }
 
+    public async Login(req: Request, res: Response): Promise<void> {
+        try {
+            const { email, senha } = req.body
+            const token = await serviceUsuario.Login(email, senha)
+
+            res.status(200).json({ token });
+        } catch (error) {
+            const err = error instanceof Error
+                ? error
+                : new Error(String(error))
+
+            res.status(500).json({ msg: err.message });
+        }
+    }
+
 }

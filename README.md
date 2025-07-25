@@ -51,3 +51,10 @@ npm install --save-dev @types/sequelize
 
 Uma pessoa é de um usuário
 Um usuário pode ser ou não de uma pessoa
+
+# JWT
+
+```bash
+npm install jsonwebtoken
+npm install -D @types/jsonwebtoken
+```
