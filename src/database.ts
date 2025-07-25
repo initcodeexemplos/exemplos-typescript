@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize-typescript";
 import Pessoa from "./model/pessoa";
+import Usuario from "./model/usuario";
 require('dotenv').config()
 
 class Database {
@@ -13,7 +14,7 @@ class Database {
             password: process.env.DB_PASSWORD ?? '',
             port: Number(process.env.DB_PORT) ?? 3306,
             dialect: 'mysql',
-            models: [ Pessoa ]
+            models: [ Pessoa, Usuario ]
         })
     }
 

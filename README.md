@@ -46,3 +46,8 @@ npx ts-jest config:init
 npm install sequelize sequelize-typescript mysql2 dotenv
 npm install --save-dev @types/sequelize
 ```
+
+# Relação
+
+Uma pessoa é de um usuário
+Um usuário pode ser ou não de uma pessoa
