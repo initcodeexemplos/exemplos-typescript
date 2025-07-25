@@ -58,3 +58,10 @@ Um usuário pode ser ou não de uma pessoa
 npm install jsonwebtoken
 npm install -D @types/jsonwebtoken
 ```
+
+# Bcrypt
+
+```bash
+npm install bcrypt
+npm install -D @types/bcrypt
+```

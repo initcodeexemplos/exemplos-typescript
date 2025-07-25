@@ -1,8 +1,10 @@
 import { Transaction } from 'sequelize';
 import Usuario from '../model/usuario'
 import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
 
 const secretKey = process.env.JWT_SECRET ?? 'secredo'
+const salt = Number(process.env.SALT) ?? 10
 
 export default class ServiceUsuario {
     async FindById(id: number, transaction?: Transaction): Promise<Usuario | null> {
@@ -18,7 +20,10 @@ export default class ServiceUsuario {
     }
 
     async Create(email: string, senha: string, transaction?: Transaction): Promise<Usuario> {
-        return Usuario.create({ email, senha }, { transaction })
+        return Usuario.create({
+            email,
+            senha: await bcrypt.hash(senha, salt)
+        }, { transaction })
     }
 
     async Update(id: number, email: string, senha: string, transaction?: Transaction): Promise<Usuario> {
@@ -29,6 +34,8 @@ export default class ServiceUsuario {
         }
         usuarioAntigo.email = email
         usuarioAntigo.senha = senha
+            ? await bcrypt.hash(senha, salt)
+            : usuarioAntigo.senha
 
         return usuarioAntigo.save({ transaction })
     }
@@ -46,7 +53,7 @@ export default class ServiceUsuario {
     async Login(email: string, senha: string): Promise<string> {
         const usuario = await this.FindByEmail(email)
 
-        if (!usuario || usuario.senha !== senha) {
+        if (!usuario || !(await bcrypt.compare(senha, usuario.senha))) {
             throw new Error("Email ou senha inválidos.")
         }
 
